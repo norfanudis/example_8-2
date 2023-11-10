@@ -5,6 +5,7 @@
 #include "light_system.h"
 #include "bright_control.h"
 #include "light_level_control.h"
+#include "temperature_sensor.h"
 
 //=====[Declaration of private defines]========================================
 
@@ -20,7 +21,9 @@
 
 //=====[Declaration and initialization of private global variables]============
 
-static float dutyCycle = 0.5f;
+float dutyCycleR = 0.5f;
+float dutyCycleG = 0.1f;
+float dutyCycleB = 0.2f;
 
 //=====[Implementations of public functions]===================================
 
@@ -31,12 +34,14 @@ void lightSystemInit()
 
 void lightSystemUpdate()
 {
-    dutyCycle = lightLevelControlRead();
+    dutyCycleR = lightLevelControlRead();
+    setDutyCycle( RGB_LED_RED, dutyCycleR );
 
-    setDutyCycle( RGB_LED_RED, dutyCycle );
-    setDutyCycle( RGB_LED_GREEN, dutyCycle );
-    setDutyCycle( RGB_LED_BLUE, dutyCycle );
+    dutyCycleG = temperatureLevelControlRead();
+    setDutyCycle( RGB_LED_GREEN, dutyCycleG );
 
+
+    setDutyCycle( RGB_LED_BLUE, dutyCycleB );
 }
 
 //=====[Implementations of private functions]==================================

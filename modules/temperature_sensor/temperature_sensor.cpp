@@ -62,6 +62,10 @@ void temperatureSensorUpdate()
        lm35TemperatureC = analogReadingScaledWithTheLM35Formula ( lm35ReadingsAverage );    
 }
 
+float temperatureLevelControlRead()
+{
+    return lm35.read();
+}
 
 float temperatureSensorReadCelsius()
 {

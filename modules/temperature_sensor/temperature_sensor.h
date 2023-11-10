@@ -10,6 +10,7 @@
 //=====[Declarations (prototypes) of public functions]=========================
 
 void temperatureSensorInit();
+float temperatureLevelControlRead();
 void temperatureSensorUpdate();
 float temperatureSensorReadCelsius();
 float temperatureSensorReadFahrenheit();
